@@ -39,6 +39,13 @@ namespace crecheng.DSPModSave.Patches
             if (!__result) return;
             
             DSPModSavePlugin.OnPostLoad();
-        } 
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(UIGameSaveEntry), "DeleteSaveFile")]
+        public static void PreDeleteSaveFile(UIGameSaveEntry __instance)
+        {
+            DSPModSavePlugin.OnDeleteSave(__instance.saveName);
+        }
     }
 }

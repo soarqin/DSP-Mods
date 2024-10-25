@@ -224,6 +224,15 @@ namespace crecheng.DSPModSave
             saveEntries.Clear();
         }
 
+        internal static void OnDeleteSave(string saveName)
+        {
+            string path = GameConfig.gameSaveFolder + saveName + saveExt;
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         internal static void SaveData(FileStream fileStream)
         {
             using BinaryWriter binaryWriter = new BinaryWriter(fileStream);
